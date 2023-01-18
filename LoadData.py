@@ -1,7 +1,7 @@
+#Nina Nguyen
+
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[5]:
 
 
 import json
@@ -10,35 +10,29 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Connect to the database
-# engine = create_engine('postgresql://username:password@host:port/database')
-
 engine = create_engine('mysql+pymysql://root:password@localhost/spurs')
 
 # Define the models for the tables in the DDL
 Base = declarative_base()
 
-#DONE
 class Game(Base):
     __tablename__ = 'games'
     gameid = Column(String, primary_key=True)
     gamedate = Column(Date)
 
-#DONE
 class Event(Base):
     __tablename__ = 'events'
     eventid = Column(String, primary_key=True)
     gameid = Column(String, ForeignKey('games.gameid'))
     visitor_id = Column(String, ForeignKey('teams.teamid'))
     home_id = Column(String, ForeignKey('teams.teamid'))
-
-#DONE    
+  
 class Team(Base):
     __tablename__ = 'teams'
     teamid = Column(Integer, primary_key=True)
     name = Column(String)
     abbreviation = Column(String)
 
-#DONE
 class Player(Base):
     __tablename__ = 'players'
     playerid = Column(Integer, primary_key=True)
@@ -151,10 +145,6 @@ for event_data in data['events']:
                                 timestamp=moment_data[1], gameid=data['gameid'])
                 session.add(coord)
             session.commit()
-
-
-# In[ ]:
-
-
-
+print("Data loaded successfully")
+session.close()
 

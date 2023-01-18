@@ -47,9 +47,9 @@ CREATE TABLE moments (
 CREATE TABLE spurs.coordinates (
     teamid INT NOT NULL,
     playerid INT NOT NULL,
-    x FLOAT NOT NULL,
-    y FLOAT NOT NULL,
-    z FLOAT NOT NULL,
+    x DECIMAL(8,5) NOT NULL,
+    y DECIMAL(8,5) NOT NULL,
+    z DECIMAL(8,5) NOT NULL,
     gameperiod INT NOT NULL,
     timestamp VARCHAR(255) NOT NULL,
     gameid VARCHAR(255) NOT NULL,
